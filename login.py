@@ -24,9 +24,7 @@ class Login:
         content_text = self.driver.find_element_by_xpath('/html/body').text
         if "前回ログイン" in content_text:
             print('login succeed!')
-            self.scraping_manager.current_process =  const.CURRENT_PROCESS['GET_INFO']
         elif 'サービスIDまたはパスワードが間違っています。ご確認の上、再度入力してください。' in content_text:
-            self.scraping_manager.current_process =  const.CURRENT_PROCESS['QUIT']
             raise Exception('login failed!')
     
     def main(self):
@@ -37,8 +35,10 @@ class Login:
             self.go_to_login()
             self.login(login_id, login_password)
             self.check_logged_in()
+            self.scraping_manager.current_process =  const.CURRENT_PROCESS['GET_INFO']
         except Exception as e:
             print('=== Error occurred  ===')
             print('type:' + str(type(e)))
             print('args:' + str(e.args))
             print('e:' + str(e))
+            self.scraping_manager.current_process = const.CURRENT_PROCESS['QUIT']
