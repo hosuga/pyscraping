@@ -1,3 +1,4 @@
+import json
 from time import sleep
 from importlib import import_module
 from selenium import webdriver
@@ -20,13 +21,13 @@ class ScrapingManager:
         options = Options()
         #options.add_argument('--headless')
         options.add_argument('--incognito')
-        driver = webdriver.Chrome(config.ChromeDriver_Path, options=options)
-        #ページが完全にロードされるまでまでの待機時間 最大5秒
-        driver.set_page_load_timeout(5)
+        driver = webdriver.Chrome(config.CHROMEDRIVER_PATH, options=options)
+        #ページが完全にロードされるまでまでの待機時間 最大10秒
+        driver.set_page_load_timeout(10)
         #要素が見つかるまでの待機時間 最大10秒
-        driver.implicitly_wait(10)
-        #Javascript実行が終了するまでの待機時間 最大5秒
-        driver.set_script_timeout(5)
+        driver.implicitly_wait(15)
+        #Javascript実行が終了するまでの待機時間 最大10秒
+        driver.set_script_timeout(10)
         return driver
     
     def quit_driver(self):
@@ -49,9 +50,11 @@ class ScrapingManager:
                 # AUTHENTICATE(self, args).main()
             elif self.current_process == const.CURRENT_PROCESS['GET_INFO']:
                 print('=== Start get_info ===')
-                GetInfo(self, args).main()
+                raw_result = GetInfo(self, args).main()
             elif self.current_process == const.CURRENT_PROCESS['COMPLETED']:
                 print('=== Completed ===')
+                encoded_result = json.dumps(raw_result)
+                print(encoded_result)
                 self.quit_driver()
             elif self.current_process == const.CURRENT_PROCESS['QUIT']:
                 print('=== Quit ===')

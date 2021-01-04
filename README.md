@@ -17,7 +17,7 @@ $ pip install python-dotenv
 ```
 $ pwd
 {Your Project Path}/PythonScraping
-$ echo "ChromeDriver_Path = \"{Your chromedriver Path}/chromedriver\"" > .env
+$ echo "CHROMEDRIVER_PATH = \"{Your chromedriver Path}/chromedriver\"" > .env
 ```
 
 ## execute

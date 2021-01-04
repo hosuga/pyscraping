@@ -4,4 +4,4 @@ load_dotenv()
 
 # 環境変数を参照
 import os
-ChromeDriver_Path = os.getenv('ChromeDriver_Path')
+CHROMEDRIVER_PATH = os.getenv('CHROMEDRIVER_PATH')
