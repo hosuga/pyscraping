@@ -1,8 +1,10 @@
 import sys
 import os
 from time import sleep
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+
 sys.path.append(os.pardir)
 import const
 
@@ -13,10 +15,10 @@ class GetInfo:
         self.args = args
         self.wait = WebDriverWait(scraping_manager.driver, 5)
         self.info = {
-            "payment":{},
-            "confirmed_details":{},
-            "unconfirmed_detail": {},
-            "point": {}
+            'payment':{},
+            'confirmed_details':{},
+            'unconfirmed_detail': {},
+            'point': {},
         }
     
     def go_to_unconfirmed_detail(self):
