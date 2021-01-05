@@ -53,11 +53,11 @@ class ScrapingManager:
         while not self.is_quit:
             if self.current_process == const.CURRENT_PROCESS['LOGIN']:
                 print('=== Start login ===')
-                args = input('{"login_id": "xxxxx", "login_password": "xxxxx"}: ')
+                args = input('Your LoginInfo: ')
                 self.scraping_package.Login(self, args).main()
             elif self.current_process == const.CURRENT_PROCESS['AUTHENTICATE']:
                 print('=== Start authenticate ===')
-                args = input('{"answer": "xxxxx"}: ')
+                args = input('Your Answer: ')
                 # self.scraping_package.Authenticate(self, args).main()
             elif self.current_process == const.CURRENT_PROCESS['GET_INFO']:
                 print('=== Start get_info ===')
