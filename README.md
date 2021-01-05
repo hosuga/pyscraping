@@ -21,7 +21,6 @@ $ echo "CHROMEDRIVER_PATH = \"{Your chromedriver Path}/chromedriver\"" > .env
 ```
 
 ## execute
-only view
 ```
 $ pwd
 {Your Project Path}/PythonScraping
