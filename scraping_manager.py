@@ -10,34 +10,35 @@ import config
 import const
 import view
 
+
 class ScrapingManager:
     def __init__(self, card_name):
         self.driver = self.generate_driver()
         self.scraping_package = globals()[card_name]
         self.is_quit = False
         self.current_process = const.CURRENT_PROCESS['LOGIN']
-    
+
     def generate_driver(self):
         options = Options()
-        #options.add_argument('--headless')
+        # options.add_argument('--headless')
         options.add_argument('--incognito')
         driver = webdriver.Chrome(config.CHROMEDRIVER_PATH, options=options)
-        #ページが完全にロードされるまでまでの待機時間 最大10秒
+        # ページが完全にロードされるまでまでの待機時間 最大10秒
         driver.set_page_load_timeout(10)
-        #要素が見つかるまでの待機時間 最大10秒
+        # 要素が見つかるまでの待機時間 最大10秒
         driver.implicitly_wait(15)
-        #Javascript実行が終了するまでの待機時間 最大10秒
+        # javascript実行が終了するまでの待機時間 最大10秒
         driver.set_script_timeout(10)
         return driver
-    
+
     def quit_driver(self):
         self.is_quit = True
-    
+
     def is_findable_element(self, attribute, attribute_name):
         """Summary line.
-        
+
         Extended description of function.
-        
+
         Args:
             attribute: A string will be CONSTANT_CASE
             attribute_name: A string 
@@ -46,7 +47,7 @@ class ScrapingManager:
             bool:
         """
         return self.driver.find_elements(getattr(By, attribute), attribute_name)
-    
+
     # 仮の呼出メソッド
     # fromパッケージを変更して、各サイトで利用する
     def main(self):

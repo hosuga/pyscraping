@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 sys.path.append(os.pardir)
 import const
 
+
 class GetInfo:
     def __init__(self, scraping_manager, args):
         self.scraping_manager = scraping_manager
@@ -15,19 +16,19 @@ class GetInfo:
         self.args = args
         self.wait = WebDriverWait(scraping_manager.driver, 5)
         self.info = {
-            'payment':{},
-            'confirmed_details':{},
+            'payment': {},
+            'confirmed_details': {},
             'unconfirmed_detail': {},
             'point': {},
         }
-    
+
     def go_to_unconfirmed_detail(self):
         self.driver.find_element_by_id('LnkV0300_001Top').click()
         self.driver.find_element_by_id('LnkYotei').click()
-    
+
     def get_one_payment_info(self):
         pass
-    
+
     def get_unconfirmed_detail_info(self):
         pass
 
@@ -47,7 +48,7 @@ class GetInfo:
                     continue
                 next_detail_script = next_detail_link.replace('javascript:', '')
                 self.driver.execute_script(next_detail_script)
-    
+
     def main(self):
         try:
             self.go_to_unconfirmed_detail()
