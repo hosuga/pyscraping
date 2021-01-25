@@ -1,4 +1,6 @@
 import json
+import logging
+import datetime
 from time import sleep
 
 from selenium import webdriver
@@ -13,10 +15,20 @@ import view
 
 class ScrapingManager:
     def __init__(self, card_name):
+        self.logger = self.init_logger()
         self.driver = self.generate_driver()
         self.scraping_package = globals()[card_name]
         self.is_quit = False
         self.current_process = const.CURRENT_PROCESS['LOGIN']
+
+    def init_logger(self):
+        logger = logging.getLogger('ScrapingLog')
+        logger.setLevel(10)
+        fh = logging.FileHandler(f'./log/{datetime.date.today()}.log')
+        logger.addHandler(fh)
+        formatter = logging.Formatter('%(asctime)s [%(levelname)s] {file: %(filename)s, line: %(lineno)d, message: %(message)s}')
+        fh.setFormatter(formatter)
+        return logger
 
     def generate_driver(self):
         options = Options()
