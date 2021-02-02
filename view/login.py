@@ -23,6 +23,7 @@ class Login:
         self.driver.find_element_by_id('pass').send_keys(login_password)
         self.driver.find_element_by_xpath('//*[@id=\"input_form\"]/form/p/input').click()
 
+    # TODO: エラー文言が表示されている場合やメンテナンスだった場合
     def check_logged_in(self):
         content_text = self.driver.find_element_by_xpath('/html/body').text
         if "前回ログイン" in content_text:

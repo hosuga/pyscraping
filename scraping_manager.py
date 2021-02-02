@@ -1,4 +1,3 @@
-import json
 import logging
 import datetime
 from time import sleep
@@ -63,6 +62,7 @@ class ScrapingManager:
     # 仮の呼出メソッド
     # fromパッケージを変更して、各サイトで利用する
     def main(self):
+        encoded_result = ''
         while not self.is_quit:
             if self.current_process == const.CURRENT_PROCESS['LOGIN']:
                 print('=== Start login ===')
@@ -74,12 +74,11 @@ class ScrapingManager:
                 # self.scraping_package.Authenticate(self, args).main()
             elif self.current_process == const.CURRENT_PROCESS['GET_INFO']:
                 print('=== Start get_info ===')
-                raw_result = self.scraping_package.GetInfo(self, args).main()
+                scraped_data = self.scraping_package.GetInfo(self, args).main()
             elif self.current_process == const.CURRENT_PROCESS['COMPLETED']:
                 print('=== Completed ===')
-                encoded_result = json.dumps(raw_result)
                 self.quit_driver()
             elif self.current_process == const.CURRENT_PROCESS['QUIT']:
                 print('=== Quit ===')
                 self.quit_driver()
-        return encoded_result
+        return scraped_data
