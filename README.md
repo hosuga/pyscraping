@@ -25,11 +25,12 @@ $ echo "CHROMEDRIVER_PATH = \"{Your chromedriver Path}/chromedriver\"" > .env
 $ pwd
 {Your Project Path}/PythonScraping
 $ python scraping_executor.py
+CardName:  xxxxx
 === Start login ===
-{"login_id": "yourID", "login_password": "yourPassword"}
+Your Login Info: {"login_id": "yourID", "login_password": "yourPassword"}
 
 === Start authenticate ===
-{"answer": "yourAnswer"}
+Your Answer: {"answer": "yourAnswer"}
 
 === Start get_info ===
 
